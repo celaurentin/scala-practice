@@ -1,6 +1,8 @@
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should._
 
+import scala.collection.convert.ImplicitConversions.`collection asJava`
+
 class ExerciseTest extends AnyFlatSpec with Matchers {
 
   /////////////////////////////////////////////////////////////////////////////
@@ -61,10 +63,14 @@ class ExerciseTest extends AnyFlatSpec with Matchers {
   }
 
   def mode(numbers: Int*): Array[Int] = {
-    def getOccur(n: Int, numbers: Seq[Int]): Int = numbers.count(_ == n)
 
-    val x = numbers.map(n => getOccur(n, numbers))
+    val numbersMap = numbers.groupBy(identity).view.mapValues(_.size).toMap
+    val maxValue = numbersMap.values.max
+    val maxKeys = numbersMap.collect{case (k,v) if v==maxValue => k}
 
+    numbersMap.collect {
+      case (k,v) if maxKeys.contains(k) => k
+    }.toArray.sorted
   }
 
 
