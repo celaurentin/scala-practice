@@ -4,7 +4,7 @@ ThisBuild / scalaVersion := "2.13.12"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "Railroad19",
+    name := "scala-practice",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test",
-    libraryDependencies += "org.scalatest" %% "scalatest-funspec" % "3.2.15" % "test",
+    libraryDependencies += "org.scalatest" %% "scalatest-funspec" % "3.2.15" % "test"
   )
